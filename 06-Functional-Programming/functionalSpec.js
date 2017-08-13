@@ -1,6 +1,5 @@
-
 // In this spec, you will use Functional Programming concepts to create functions
-// that iterate over collections and perform some function. 
+// that iterate over collections and perform some function.
 
 // map takes an array, performs a function on each element
 // and returns an array that contains each transformed element
@@ -11,13 +10,13 @@ describe("the function map", function() {
     spyOn(Array.prototype, 'map').and.callThrough();
   });
 
-  it('first, create a function that takes an element and returns double of it', function () {
+  it('first, create a function that takes an element and returns double of it', function() {
     expect(doubler(15)).toEqual(30);
   });
 
   // Now let's use the `doubler` function and apply it over an
   // entire array using a map function that we will create
-  
+
   // Observe here how we're not actually iterating here, we're writing a function that handles
   // the looping so we can focus on higher-level code semantics
   it("takes our doubling function and applies it to an array", function() {
@@ -31,15 +30,15 @@ describe("the function map", function() {
     })).toEqual([3, 6, 9]);
   });
 
-  it('should not use Array.prototype.map', function () {
+  it('should not use Array.prototype.map', function() {
     map([1, 2, 3], doubler);
     expect(Array.prototype.map.calls.any()).toEqual(false)
   });
 });
 
-// filter takes an array (we can also call this a collection) and 
+// filter takes an array (we can also call this a collection) and
 // a function and filters the collection using that function.
-// If the function it's passed returns true for an element, 
+// If the function it's passed returns true for an element,
 // it will keep the value, otherwise remove it from the array
 describe("the function filter", function() {
 
@@ -54,11 +53,11 @@ describe("the function filter", function() {
     else
       return false;
   };
-  
+
   // `oddFilter` returns true if a number is odd
   var oddFilter = function(element) {
-      return !evenFilter(element);
-    };
+    return !evenFilter(element);
+  };
 
   it("filters an array based on evens", function() {
     expect(filter([1, 2, 3, 4, 5, 6, 7, 8], evenFilter)).toEqual([2, 4, 6, 8]);
@@ -69,7 +68,7 @@ describe("the function filter", function() {
     expect(filter([1, 2, 3, 4, 5, 6, 7, 8], oddFilter)).toEqual([1, 3, 5, 7]);
   });
 
-  it('should not use Array.prototype.filter', function () {
+  it('should not use Array.prototype.filter', function() {
     filter([1, 2, 3, 4, 5, 6, 7, 8], oddFilter);
     expect(Array.prototype.filter.calls.any()).toEqual(false)
   });
@@ -119,7 +118,7 @@ describe("the function reduce", function() {
     expect(reduce(wordArray, 0, countWordsInReduce)).toEqual(11);
   });
 
-  it('should not use Array.prototype.reduce', function () {
+  it('should not use Array.prototype.reduce', function() {
     reduce(wordArray, 0, countWordsInReduce);
     expect(Array.prototype.reduce.calls.any()).toEqual(false)
   });
@@ -170,12 +169,12 @@ describe("the function every", function() {
     expect(every([0, 11, 28], isEven)).toEqual(false);
   });
 
-  it('should not use Array.prototype.every', function () {
-    every([1,2,3], isEven);
+  it('should not use Array.prototype.every', function() {
+    every([1, 2, 3], isEven);
     expect(Array.prototype.every.calls.any()).toEqual(false)
   });
 
-  it('should re-use the reduce function created in previous specs', function(){
+  it('should re-use the reduce function created in previous specs', function() {
     every([0, 10, 28], isEven)
     expect(reduce).toHaveBeenCalled();
   });
@@ -204,7 +203,7 @@ describe("the function any", function() {
     expect(any([1, 10, 29], isEven)).toEqual(true);
   });
 
-  it('should re-use the reduce function created in previous specs', function(){
+  it('should re-use the reduce function created in previous specs', function() {
     any([0, 10, 28], isEven)
     expect(reduce).toHaveBeenCalled();
   });
