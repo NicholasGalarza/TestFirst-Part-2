@@ -68,7 +68,7 @@ function every(arr, callback) {
   });
 }
 
-// Eight suite
+// Eighth suite
 function any(arr, callback) {
   return reduce(arr, false, function(testResult, element) {
     return testResult || callback(element);
